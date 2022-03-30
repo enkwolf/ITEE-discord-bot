@@ -13,7 +13,7 @@ setup(
     extras_require=[
         "pytest",
         "pytest-asyncio"
-    ]
+    ],
     entry_points={
         "console_scripts": [
             "iteebot=iteebot.manage:cli"
