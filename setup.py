@@ -10,10 +10,12 @@ setup(
         "discord",
         "click"
     ],
-    extras_require=[
-        "pytest",
-        "pytest-asyncio"
-    ]
+    extras_require={
+        "tests": [
+            "pytest",
+            "pytest-asyncio"
+        ],
+    },
     entry_points={
         "console_scripts": [
             "iteebot=iteebot.manage:cli"
