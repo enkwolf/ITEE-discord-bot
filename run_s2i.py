@@ -10,7 +10,7 @@ if __name__ == "__main__":
     config["TOKEN"] = os.environ["DISCORD_TOKEN"]
     config["DB"]= os.environ["DB_STRING"]
     
-    db.init_db(config)
+    db.init_db(config["DB"])
     bot = ITEEBot(config)
     bot.run()
     
