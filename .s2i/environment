@@ -1,0 +1,2 @@
+APP_FILE=run_s2i.py
+CONFIG_PATH=/etc/iteebot/config.json
