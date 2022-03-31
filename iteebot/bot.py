@@ -25,7 +25,7 @@ class ITEEBot(discord.Client):
     _cfg and _engine, respectively.
     """
     
-    def __init__(self, config, debug, *args, **kwargs):
+    def __init__(self, config, *args, debug=False, **kwargs):
         """
         Initializes the bot using options from a configuration file. Also
         initializes logging based on the debug argument, using stdout if it is
