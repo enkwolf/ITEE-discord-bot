@@ -37,7 +37,7 @@ With these configurations the default container image should be able to run the 
 
 ## Commands
 
-Currently has only one command, `addcourse`. Syntax:
+Currently has only one command, `addcourse`. Commands must start with mentioning the bot (e.g. @ITEE-bot). Syntax for the command itself:
 
     !addcourse,[role_id],[course_code],[course_name],[course_name_alt] 
     
