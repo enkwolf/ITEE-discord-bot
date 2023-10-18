@@ -72,7 +72,7 @@ def run(debug, config_path):
     """
 
     config = conf.load_config(config_path)
-    bot = ITEEBot(config, debug)
+    bot = ITEEBot(config, debug=debug)
     bot.run()
 
 cli.add_command(create_config)

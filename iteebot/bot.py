@@ -156,6 +156,7 @@ class ITEEBot(discord.Client):
             return
             
         if message.channel.id == self._cfg["CONTROL_CHANNEL"]:
+            logging.debug("Command channel event")
             await self._parse_command(message)
         
     async def _parse_command(self, message):
@@ -171,9 +172,12 @@ class ITEEBot(discord.Client):
         * message (Message) - a discord.py message object
         """
     
-        if not message.content.startswith("!"):
+        content = message.content.lstrip("<@0123456789> ")
+        logging.debug(content)
+
+        if not content.startswith("!"):
             return
-        command, *args = message.content.lstrip("!").split(
+        command, *args = content.lstrip("!").split(
             self._cfg["COMMAND_SEP"]
         )
         logging.info(f"Received command {command} with args:")
