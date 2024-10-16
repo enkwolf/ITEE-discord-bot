@@ -122,6 +122,35 @@ class ITEEBot(discord.Client):
         role = guild.get_role(course.role_id)
         member = guild.get_member(event.user_id)
         await member.remove_roles(role)
+        
+    async def on_raw_reaction_clear(self, event):
+        """
+        Uses the reaction event's message ID to find the course associated
+        with the reacted message. If the course is found, the associated role
+        is removed from all users.
+
+        Reactions on channels other than the designated singup channel are 
+        ignored.
+
+        * event (RawReactionEvent) - reaction event from discord.py
+        """
+
+        if event.channel_id != self._cfg["SIGNUP_CHANNEL"]:
+            return
+
+        with Session(self._engine) as s:
+            course = s.query(db.Course).filter_by(
+                message_id=event.message_id
+            ).first()
+            if not course:
+                return
+        
+        guild = self.get_guild(event.guild_id)
+        role = guild.get_role(course.role_id)
+        for m in role.members:
+            await m.remove_roles(role)
+        
+        logging.info("Cleared roles for "+course.name_en) 
 
     async def on_error(self, event, *args, **kwargs):
         """
@@ -244,3 +273,18 @@ class ITEEBot(discord.Client):
             )
             s.add(course)
             s.commit()
+            
+    async def _resetrole_handler(self, 
+                           message,
+                           role_id):
+        """
+        Handler for the resetrole command. Upon receiveing this command, the
+        bot will remove the given role_id from all users on the server.
+        
+        * message (Message) - a discord.py message object
+        * role_id (int) - ID of an existing role
+        """
+        
+        role = message.guild.get_role(int(role_id))
+        for m in role.members:
+            await m.remove_roles(role)
