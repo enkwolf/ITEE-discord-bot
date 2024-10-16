@@ -1,0 +1,20 @@
+[tool.setuptools]
+packages = ["iteebot"]
+
+[project]
+name = "ITEE-Bot"
+version = "0.2.0"
+dependencies = [
+    "sqlalchemy",
+    "discord",
+    "click"
+]
+
+[project.scripts]
+iteebot = "iteebot.manage:cli"
+
+[project.optional-dependencies]
+tests = [
+    "pytest",
+    "pytest-asyncio"
+]
