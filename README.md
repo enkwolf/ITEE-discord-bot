@@ -28,7 +28,7 @@ Then you can run the bot. You can add `--debug` if you want to run in debug mode
     
 ## S2I Deployment
 
-The bot can also run on the Openshift Python 3.9 s2i container image. In order to run the bot in this container image, two secrets and one configmap need to be set up. By default the configmap should dropped into a configuration file (partial is sufficient) in `/etc/iteebot/config.json`. The following environmental variables also need to be set as secrets:
+The bot can also run on the Openshift Python 3.12 s2i container image. In order to run the bot in this container image, two secrets and one configmap need to be set up. By default the configmap should dropped into a configuration file (partial is sufficient) in `/etc/iteebot/config.json`. The following environmental variables also need to be set as secrets:
 
 * DISCORD_TOKEN - your Discord access token
 * DB_STRING - SQLAlchemy database string
